@@ -1,0 +1,16 @@
+FROM php:7.4.4-fpm-buster
+
+RUN apt update
+RUN apt dist-upgrade -y
+
+RUN apt-get install -y \
+        wget curl apt-transport-https ca-certificates mc git \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+    && docker-php-ext-install -j$(nproc) iconv \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+
+RUN docker-php-ext-install pdo pdo_mysql
