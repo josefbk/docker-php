@@ -1,4 +1,4 @@
-FROM php:7.4.4-fpm-buster
+FROM php:7.4.6-fpm-buster
 
 RUN apt update
 RUN apt dist-upgrade -y
@@ -23,3 +23,6 @@ RUN docker-php-ext-install zip
 #CHROMIUM & CHROMEDRIVER
 RUN apt-get install chromium -y
 RUN apt-get install chromium-driver
+
+RUN pecl install redis-5.2.2 \
+    && docker-php-ext-enable redis
