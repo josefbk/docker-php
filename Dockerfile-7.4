@@ -1,4 +1,6 @@
-FROM php:7.4.6-fpm-buster
+FROM php:7.4.7-fpm-buster
+
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 RUN apt update
 RUN apt dist-upgrade -y
